@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <form action="/history" method="post">
+    <h1>Transiction History</h1>
+    <h2 style="font-size:12px;color:red;">Negative = Sell | Positive=Buy</h2>
+    {% for hist in trans %}
+    <p style="font-size:18px;color:orange;text-align:center">Symbol = {{hist["symbol"]}}, Price =${{hist["price"]}}, No of Shares={{hist["no_stocks"]}}, Date={{hist["creat_date"]}}</p>
+    {% endfor %}
+    </form>
+{% endblock %}

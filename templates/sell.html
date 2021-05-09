@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Available Stocks
+{% endblock %}
+
+{% block main %}
+    <h1>Stocks available for Sell</h1>
+    {% for stocks in info %}
+    <li>
+        Symbol = {{stocks["symbol"]}} Total Number of Shares = {{stocks["total_shares"]}} and Latest price = {{current_price[stocks["symbol"]]["price"]}}.
+    </li>
+    {% endfor %}
+    User Balance = {{cash_remaining}}
+
+    <form action="/sell" method="post">
+        <div class="form-group">
+            <label for="stocks">Chose a stock</label>
+            <select name="stocks">
+                {% for stocks in info %}
+                <option value="{{stocks["symbol"]}}">{{stocks["symbol"]}}</option>
+                {% endfor %}
+            </select>
+            <input autocomplete="off" autofocus class="form-control" name="units" placeholder="No of Stocks" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+{% endblock %}
